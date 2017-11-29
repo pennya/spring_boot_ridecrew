@@ -16,11 +16,23 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 
 group = 'com.ridecrew'
-version = '0.0.5-SNAPSHOT'
-sourceCompatibility = 1.8
+version = '0.0.6-SNAPSHOT'
 
+//소스버전 컴파일버전, 인코딩 설정
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+
+//라이브러리를 가져올 레파지토리
 repositories {
-	mavenCentral()
+	mavenLocal()
+    jcenter()
+    mavenCentral()
+    maven {
+        url "http://repo.gradle.org/gradle/repo"
+    }
+    maven { url "http://repo.spring.io/release" }
+    maven { url "http://repo.spring.io/libs-snapshot" }
 }
 
 configurations {
@@ -31,7 +43,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
-	compile("org.springframework:spring-jdbc")
-  	compile("commons-dbcp:commons-dbcp")
-  	compile("mysql:mysql-connector-java")
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
+	runtime('mysql:mysql-connector-java')
+	runtime('org.projectlombok:lombok:1.16.6')
+	compile ('commons-io:commons-io:2.4')
 }
