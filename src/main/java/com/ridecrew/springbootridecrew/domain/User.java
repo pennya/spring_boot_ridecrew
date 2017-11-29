@@ -6,17 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
-@Entity(name = "user") // DBMS Table과 매핑
+@Entity(name = "user") 
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) // PK
+	@GeneratedValue(strategy = GenerationType.AUTO) 
 	private Long id;
 
-	@Column(length = 20, nullable = false) // 컬럼명칭과 동일해야되지만 다를경우 어노테이션으로 매칭
+	@Column(length = 20, nullable = false) 
 	private String name;
 
 	@Column(name = "email", length = 20, nullable = false, unique = true)

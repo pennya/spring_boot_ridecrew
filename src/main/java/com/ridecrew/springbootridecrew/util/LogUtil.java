@@ -9,22 +9,12 @@ import org.apache.commons.io.IOUtils;
 
 
 public class LogUtil {
-	/**
-     * 모든 Error Stack 을 문자열로 보여준다.
-     * @param e 출력할 Throwable
-     * @return 에러 스택 문자열
-     */
     public static String getStackTrace(Throwable e) {
         StringBuffer buffer = new StringBuffer();
         printStackTrace(buffer, e, false);
         return buffer.toString();
     }
 
-    /**
-     * StackTrace 를 문자열로 보여준다.
-     * @param stackTraceElements 출력할 스택
-     * @return 스택 문자열
-     */
     public static String getStackTrace(StackTraceElement[] stackTraceElements) {
         StringBuffer buffer = new StringBuffer();
         for (int i=0; i < stackTraceElements.length; i++) {
@@ -34,23 +24,10 @@ public class LogUtil {
         return buffer.toString();
     }
 
-
-
-    /**
-     * 모든 Error Stack 을 파일에 기록한다. 기존 파일이 있을 경우 내용을 추가한다.
-     * @param logFile Error Stack 을 추가할 파일
-     * @param e 기록할 Error
-     */
     public static void log(File logFile, Throwable e) {
         log(logFile, e, null);
     }
 
-    /**
-     * 모든 Error Stack 을 파일에 기록한다. 기존 파일이 있을 경우 내용을 추가한다.
-     * @param logFile Error Stack 을 추가할 파일
-     * @param e 기록할 Error
-     * @param appendMessage 에러 스택 상단에 추가할 추가 메세지. null 일 경우 기록하지 않는다.
-     */
     public static void log(File logFile, Throwable e, String appendMessage) {
         FileOutputStream fos = null;
         try {
@@ -68,12 +45,6 @@ public class LogUtil {
         }
     }
 
-    /**
-     *
-     * @param buffer
-     * @param e 조회할 Throwable
-     * @param cause Cause 표시 여부
-     */
     private static void printStackTrace(StringBuffer buffer, Throwable e, boolean cause) {
         if(cause) {
             buffer.append("Caused by: ");

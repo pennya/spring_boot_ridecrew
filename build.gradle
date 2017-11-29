@@ -18,12 +18,10 @@ apply plugin: 'war'
 group = 'com.ridecrew'
 version = '0.0.6-SNAPSHOT'
 
-//소스버전 컴파일버전, 인코딩 설정
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 compileJava.options.encoding = 'UTF-8'
 
-//라이브러리를 가져올 레파지토리
 repositories {
 	mavenLocal()
     jcenter()
@@ -47,4 +45,5 @@ dependencies {
 	runtime('mysql:mysql-connector-java')
 	runtime('org.projectlombok:lombok:1.16.6')
 	compile ('commons-io:commons-io:2.4')
+	compile ('org.assertj:assertj-core:1.0.0')
 }

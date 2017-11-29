@@ -2,9 +2,6 @@ package com.ridecrew.springbootridecrew.model;
 
 import com.ridecrew.springbootridecrew.util.LogUtil;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class ApiError {
 	private ApiErrorType type;
     private ApiErrorCode code;

@@ -1,8 +1,5 @@
 package com.ridecrew.springbootridecrew.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class ApiResult<T> {
 	private boolean success = true;
 	private String version = "v1";
