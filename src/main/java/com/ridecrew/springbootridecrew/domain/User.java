@@ -1,31 +1,33 @@
 package com.ridecrew.springbootridecrew.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.data.annotation.Transient;
 
 @Entity(name = "user") 
 public class User implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 389814181358557717L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) 
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id")
 	private Long id;
 
-	@Column(nullable = false) 
-	@NotEmpty(message = "Please provide your name")
-	private String name;
+	@Column(name = "login_id", nullable = false) 
+	private String loginId;
 	
-	@Transient  // JSON output에는 안나옴. 데이터베이스에는 저장됨.
 	@Column(nullable = false)
 	private String pwd;
 
@@ -37,13 +39,13 @@ public class User implements Serializable {
 	public Long getId() {
 		return id;
 	}
-
-	public String getName() {
-		return name;
+	
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	public String getEmail() {
