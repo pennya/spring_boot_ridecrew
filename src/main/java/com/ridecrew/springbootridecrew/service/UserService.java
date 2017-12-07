@@ -11,9 +11,11 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    User create(User user);
+    boolean create(User user);
 
     User update(User user);
 
     void delete(Long id);
+    
+    List<User> findByEmail(String email);
 }

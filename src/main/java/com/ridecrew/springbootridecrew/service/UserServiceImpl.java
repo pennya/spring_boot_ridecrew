@@ -1,8 +1,8 @@
 package com.ridecrew.springbootridecrew.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +24,20 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> getAllUsers() {
-		return Lists.newArrayList(userRepository.findAll());
+		List<User> list = new ArrayList<>();
+		userRepository.findAll().forEach(e -> list.add(e));
+		return list;
 	}
 
 	@Override
-	public User create(User user) {
-		return userRepository.save(user);
+	public synchronized boolean create(User user) {
+		List<User> list = userRepository.findByEmail(user.getEmail());
+		if(list.size() > 0) {
+			return false;
+		} else {
+			userRepository.save(user);
+			return true;
+		}
 	}
 
 	@Override
@@ -40,5 +48,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(Long id) {
 		userRepository.delete(id);
+	}
+
+	@Override
+	public List<User> findByEmail(String email) {
+		return userRepository.findByEmail(email);
 	}
 }
