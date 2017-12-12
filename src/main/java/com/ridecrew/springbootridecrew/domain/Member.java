@@ -44,5 +44,8 @@ public class Member implements Serializable {
 	
 	@Column(nullable = false, unique = true)
 	private String deviceId;
+	
+	@Column(name = "member_type", nullable = false)
+	private int memberType;
 
 }

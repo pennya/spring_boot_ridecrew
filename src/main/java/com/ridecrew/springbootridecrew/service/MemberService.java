@@ -2,8 +2,6 @@ package com.ridecrew.springbootridecrew.service;
 
 import java.util.List;
 
-import org.springframework.ui.Model;
-
 import com.ridecrew.springbootridecrew.domain.Member;
 
 public interface MemberService {

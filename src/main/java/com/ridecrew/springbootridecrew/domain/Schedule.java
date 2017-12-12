@@ -3,10 +3,8 @@ package com.ridecrew.springbootridecrew.domain;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,24 +35,43 @@ public class Schedule implements Serializable{
 	private Member member;
 	
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date date;
-	
-	@Temporal(TemporalType.TIME)
-	private Date time;
 	
 	@Column(nullable = false)
 	private String title;
 	
 	@Column(nullable = false)
-	private String start;
+	private String startPoint;
 	
 	@Column(nullable = false)
-	private String end;
+	private String endPoint;
 	
+	@Temporal(TemporalType.TIME)
 	@Column(nullable = false)
-	private String waypoint;
+	private Date startTime;
 	
-	@Column()
-	private String content;
+	@Temporal(TemporalType.TIME)
+	@Column(nullable = false)
+	private Date endTime;
+	
+	@Column
+	private String descriptions;
+	
+	@Column
+	private String picture;
+	
+	@Column
+	private String startSpot;
+	
+	@Column
+	private String endSpot;
+	
+	@Column
+	private int status;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column
+	private Date regDate;
 	
 }

@@ -21,8 +21,6 @@ import com.ridecrew.springbootridecrew.service.MemberService;
 @RestController
 public class MemberController {
 
-	private Logger logger = LoggerFactory.getLogger(MemberController.class);
-
 	@Autowired
 	private MemberService memberService;
 
