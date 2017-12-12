@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ridecrew.springbootridecrew.domain.User;
+import com.ridecrew.springbootridecrew.domain.Member;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long>{
-	List<User> findByEmail(String email);
+public interface MemberRepository extends CrudRepository<Member, Long>{
+	List<Member> findByEmail(String email);
 }

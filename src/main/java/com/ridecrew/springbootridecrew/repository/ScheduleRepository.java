@@ -6,9 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.ridecrew.springbootridecrew.domain.Schedule;
-import com.ridecrew.springbootridecrew.domain.User;
+import com.ridecrew.springbootridecrew.domain.Member;
 
 @Repository
 public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
-	List<Schedule> findByUser(User user);
+	List<Schedule> findByMember(Member member);
 }

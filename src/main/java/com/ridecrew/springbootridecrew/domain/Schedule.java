@@ -15,7 +15,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Entity(name = "schedule")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Schedule implements Serializable{
 
 	private static final long serialVersionUID = -2124319570368831640L;
@@ -26,8 +33,8 @@ public class Schedule implements Serializable{
 	private long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "member_id")
+	private Member member;
 	
 	@Temporal(TemporalType.DATE)
 	private Date date;
@@ -49,74 +56,5 @@ public class Schedule implements Serializable{
 	
 	@Column()
 	private String content;
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Date getTime() {
-		return time;
-	}
-
-	public void setTime(Date time) {
-		this.time = time;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getStart() {
-		return start;
-	}
-
-	public void setStart(String start) {
-		this.start = start;
-	}
-
-	public String getEnd() {
-		return end;
-	}
-
-	public void setEnd(String end) {
-		this.end = end;
-	}
-
-	public String getWaypoint() {
-		return waypoint;
-	}
-
-	public void setWaypoint(String waypoint) {
-		this.waypoint = waypoint;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public long getId() {
-		return id;
-	}
-	
 	
 }

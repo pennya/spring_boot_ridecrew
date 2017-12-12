@@ -3,7 +3,7 @@ package com.ridecrew.springbootridecrew.service;
 import java.util.List;
 
 import com.ridecrew.springbootridecrew.domain.Schedule;
-import com.ridecrew.springbootridecrew.domain.User;
+import com.ridecrew.springbootridecrew.domain.Member;
 
 public interface ScheduleService {
 	Schedule findOne(Long id);
@@ -16,5 +16,5 @@ public interface ScheduleService {
 	
 	void delete(Long id);
 	
-	List<Schedule> findByUser(User user);
+	List<Schedule> findByMember(Member member);
 }

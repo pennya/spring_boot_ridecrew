@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ridecrew.springbootridecrew.domain.Schedule;
-import com.ridecrew.springbootridecrew.domain.User;
+import com.ridecrew.springbootridecrew.domain.Member;
 import com.ridecrew.springbootridecrew.repository.ScheduleRepository;
 
 @Service
@@ -46,8 +46,8 @@ public class ScheduleServceImpl implements ScheduleService{
 	}
 
 	@Override
-	public List<Schedule> findByUser(User user) {
-		return scheduleRepository.findByUser(user);
+	public List<Schedule> findByMember(Member member) {
+		return scheduleRepository.findByMember(member);
 	}
 	
 	
