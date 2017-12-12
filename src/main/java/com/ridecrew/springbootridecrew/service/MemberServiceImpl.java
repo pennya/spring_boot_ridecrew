@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ridecrew.springbootridecrew.domain.Member;
+import com.ridecrew.springbootridecrew.exception.DuplicateLoginIdException;
+import com.ridecrew.springbootridecrew.model.ApiErrorCode;
+import com.ridecrew.springbootridecrew.model.ApiErrorType;
+import com.ridecrew.springbootridecrew.model.ApiResult;
 import com.ridecrew.springbootridecrew.repository.MemberRepository;
 
 @Service
@@ -30,14 +34,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public synchronized boolean create(Member member) {
-		List<Member> list = memberRepository.findByEmail(member.getEmail());
-		if(list.size() > 0) {
-			return false;
-		} else {
-			memberRepository.save(member);
-			return true;
+	public ApiResult<Member> create(Member member) throws DuplicateLoginIdException{
+		Member findMember = memberRepository.findByEmail(member.getEmail());
+		if(findMember != null) {
+			throw new DuplicateLoginIdException();
 		}
+		
+		findMember = memberRepository.findByDeviceId(member.getDeviceId());
+		if(findMember != null) {
+			return new ApiResult<>(ApiErrorType.MESSAGE, ApiErrorCode.DUPLICATE_CODE, "DUPLICATE DEVICE ID");
+		}
+		
+		return new ApiResult<>(memberRepository.save(member));
 	}
 
 	@Override
@@ -51,7 +59,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Member> findByEmail(String email) {
+	public Member findByEmail(String email) {
 		return memberRepository.findByEmail(email);
+	}
+
+	@Override
+	public Member findByDeviceId(String email) {
+		return null;
 	}
 }
