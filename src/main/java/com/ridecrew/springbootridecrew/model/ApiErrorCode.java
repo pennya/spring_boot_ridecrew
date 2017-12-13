@@ -8,5 +8,6 @@ public enum ApiErrorCode {
     EXPIRED_ACCESS_TOKEN,
     DUPLICATE_CODE,
     NO_PERMISSION,
-    NOT_FOUND
+    NOT_FOUND,
+    DUPLICATE_DEVICE_ID
 }

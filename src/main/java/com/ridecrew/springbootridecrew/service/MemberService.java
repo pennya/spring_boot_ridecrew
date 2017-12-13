@@ -3,21 +3,20 @@ package com.ridecrew.springbootridecrew.service;
 import java.util.List;
 
 import com.ridecrew.springbootridecrew.domain.Member;
-import com.ridecrew.springbootridecrew.exception.DuplicateLoginIdException;
 import com.ridecrew.springbootridecrew.model.ApiResult;
 
 public interface MemberService {
-	Member findOne(Long id);
+	ApiResult<Member> findOne(Long id);
 
-    List<Member> getAllMembers();
+    ApiResult<List<Member>> getAllMembers();
 
-    ApiResult<Member> create(Member member) throws DuplicateLoginIdException;
+    ApiResult<Member> create(Member member);
 
-    Member update(Member member);
+    ApiResult<Member> update(Long id, Member member);
 
-    void delete(Long id);
+    ApiResult<Void> delete(Long id);
     
-    Member findByEmail(String email);
+    ApiResult<Member> findByEmail(String email);
     
-    Member findByDeviceId(String email);
+    ApiResult<Member> findByDeviceId(String deviceId);
 }

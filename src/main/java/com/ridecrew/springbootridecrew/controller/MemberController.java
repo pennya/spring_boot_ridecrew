@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ridecrew.springbootridecrew.domain.Member;
-import com.ridecrew.springbootridecrew.exception.DuplicateLoginIdException;
-import com.ridecrew.springbootridecrew.model.ApiErrorCode;
-import com.ridecrew.springbootridecrew.model.ApiErrorType;
 import com.ridecrew.springbootridecrew.model.ApiResult;
 import com.ridecrew.springbootridecrew.service.MemberService;
 
@@ -26,20 +23,25 @@ public class MemberController {
 	@RequestMapping(value = "/rest/v1/members", method = RequestMethod.POST)
 	public ApiResult<Member> add(@RequestBody Member command) {
 		try {
-			ApiResult<Member> result = memberService.create(command);
-			return result;
+			return memberService.create(command);
 		} catch (RuntimeException e) {
 			return new ApiResult<>(e);
-		} catch (DuplicateLoginIdException e) {
-			return new ApiResult<>(ApiErrorType.MESSAGE, ApiErrorCode.DUPLICATE_LOGIN_ID, "");
 		}
 	}
 
 	@RequestMapping(value = "/rest/v1/members/{id}", method = RequestMethod.GET)
 	public ApiResult<Member> find(@PathVariable("id") Long id) {
 		try {
-			Member member = memberService.findOne(id);
-			return new ApiResult<>(member);
+			return memberService.findOne(id);
+		} catch (RuntimeException e) {
+			return new ApiResult<>(e);
+		}
+	}
+	
+	@RequestMapping(value = "/rest/v1/members/{id}", method = RequestMethod.PUT)
+	public ApiResult<Member> update(@PathVariable("id") Long id, @RequestBody Member member) {
+		try {
+			return memberService.update(id, member);
 		} catch (RuntimeException e) {
 			return new ApiResult<>(e);
 		}
@@ -48,18 +50,16 @@ public class MemberController {
 	@RequestMapping(value = "/rest/v1/members", method = RequestMethod.GET)
 	public ApiResult<List<Member>> getmembers() {
 		try {
-			List<Member> members = memberService.getAllMembers();
-			return new ApiResult<>(members);
+			return memberService.getAllMembers();
 		} catch (RuntimeException e) {
 			return new ApiResult<>(e);
 		}
 	}
 
 	@RequestMapping(value = "/rest/v1/members/{id}", method = RequestMethod.DELETE)
-	public<T> ApiResult<T> delete(@PathVariable("id") Long id) {
+	public ApiResult<Void> delete(@PathVariable("id") Long id) {
 		try {
-			memberService.delete(id);
-			return new ApiResult<>();
+			return memberService.delete(id);
 		} catch (RuntimeException e) {
 			return new ApiResult<>(e);
 		}
@@ -68,8 +68,7 @@ public class MemberController {
 	@RequestMapping(value = "/rest/v1/memberbyemail", method = RequestMethod.GET)
 	public ApiResult<Member> findByEmail(@RequestParam(value = "email") String email) {
 		try {
-			Member member = memberService.findByEmail(email);
-			return new ApiResult<>(member);
+			return memberService.findByEmail(email);
 		} catch (RuntimeException e) {
 			return new ApiResult<>(e);
 		}
