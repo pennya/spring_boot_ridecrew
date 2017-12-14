@@ -33,6 +33,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	@Transactional
 	public ApiResult<Member> create(Member member){
 		Member findMember = memberRepository.findByEmail(member.getEmail());
 		if(findMember != null) {

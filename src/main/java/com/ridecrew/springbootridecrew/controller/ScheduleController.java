@@ -1,5 +1,6 @@
 package com.ridecrew.springbootridecrew.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ridecrew.springbootridecrew.domain.Member;
 import com.ridecrew.springbootridecrew.domain.Schedule;
 import com.ridecrew.springbootridecrew.model.ApiResult;
 import com.ridecrew.springbootridecrew.service.ScheduleService;
@@ -54,6 +56,32 @@ public class ScheduleController {
 			return new ApiResult<>(e);
 		}
 	}
-
 	
+	@RequestMapping(value = "/rest/v1/schedules/{id}", method = RequestMethod.DELETE)
+	public ApiResult<Void> delete(@PathVariable("id") Long id) {
+		try {
+			return scheduleService.delete(id);
+		} catch ( RuntimeException e) {
+			return new ApiResult<>(e);
+		}
+	}
+	
+	@RequestMapping(value = "/rest/v1/schedules_by_member", method = RequestMethod.POST)
+	public ApiResult<List<Schedule>> findByMember(@RequestBody Member member) {
+		try {
+			return scheduleService.findByMember(member);
+		} catch ( RuntimeException e ) {
+			return new ApiResult<>(e);
+		}
+	}
+
+	@RequestMapping(value = "/rest/v1/schedules_by_date", method = RequestMethod.POST)
+	public ApiResult<List<Schedule>> findByDate(@RequestBody Date date) {
+		try {
+			return scheduleService.findByDate(date);
+		} catch ( RuntimeException e ) {
+			return new ApiResult<>(e);
+		}
+	}
+
 }

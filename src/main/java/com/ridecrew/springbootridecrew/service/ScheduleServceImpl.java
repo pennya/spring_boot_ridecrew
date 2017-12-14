@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ridecrew.springbootridecrew.domain.Member;
 import com.ridecrew.springbootridecrew.domain.Schedule;
 import com.ridecrew.springbootridecrew.model.ApiErrorCode;
 import com.ridecrew.springbootridecrew.model.ApiErrorType;
 import com.ridecrew.springbootridecrew.model.ApiResult;
-import com.ridecrew.springbootridecrew.domain.Member;
 import com.ridecrew.springbootridecrew.repository.ScheduleRepository;
 
 @Service
@@ -35,6 +35,7 @@ public class ScheduleServceImpl implements ScheduleService{
 	}
 
 	@Override
+	@Transactional
 	public ApiResult<Schedule> add(Schedule schedule) {
 		return new ApiResult<>(scheduleRepository.save(schedule));
 	}

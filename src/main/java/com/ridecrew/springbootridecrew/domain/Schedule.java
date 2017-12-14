@@ -3,8 +3,10 @@ package com.ridecrew.springbootridecrew.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +14,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.ridecrew.springbootridecrew.serializer.JsonDateSerializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,12 +37,13 @@ public class Schedule implements Serializable{
 	@Column(name = "Schedule_id")
 	private long id;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "member_id")
 	private Member member;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
+	@JsonSerialize(using=JsonDateSerializer.class)
 	private Date date;
 	
 	@Column(nullable = false)

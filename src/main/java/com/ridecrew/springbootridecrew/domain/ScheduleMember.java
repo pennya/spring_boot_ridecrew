@@ -2,6 +2,7 @@ package com.ridecrew.springbootridecrew.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,11 +20,11 @@ public class ScheduleMember implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "schedule_id")
 	private Schedule schedule;
 	
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "member_id")
 	private Member member;
 	
