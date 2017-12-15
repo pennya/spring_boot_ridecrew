@@ -13,4 +13,5 @@ import com.ridecrew.springbootridecrew.domain.Member;
 public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
 	List<Schedule> findByMember(Member member);
 	List<Schedule> findByDate(Date date);
+	List<Schedule> findByMemberId(Long memberId);
 }

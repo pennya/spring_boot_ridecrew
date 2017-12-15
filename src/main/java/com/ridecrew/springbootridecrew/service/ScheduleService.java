@@ -18,6 +18,8 @@ public interface ScheduleService {
 	
 	ApiResult<Void> delete(Long id);
 	
+	ApiResult<List<Schedule>> findByMemberId(Long memberId);
+	
 	ApiResult<List<Schedule>> findByMember(Member member);
 	
 	ApiResult<List<Schedule>> findByDate(Date date);

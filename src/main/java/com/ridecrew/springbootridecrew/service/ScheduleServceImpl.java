@@ -58,6 +58,11 @@ public class ScheduleServceImpl implements ScheduleService{
 	}
 
 	@Override
+	public ApiResult<List<Schedule>> findByMemberId(Long memberId) {
+		return new ApiResult<>(scheduleRepository.findByMemberId(memberId));
+	}
+	
+	@Override
 	public ApiResult<List<Schedule>> findByMember(Member member) {
 		return new ApiResult<>(scheduleRepository.findByMember(member));
 	}

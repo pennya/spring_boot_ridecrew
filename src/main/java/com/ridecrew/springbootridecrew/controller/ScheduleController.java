@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ridecrew.springbootridecrew.domain.Member;
@@ -66,6 +67,15 @@ public class ScheduleController {
 		}
 	}
 	
+	@RequestMapping(value = "/rest/v1/schedules_by_member", method = RequestMethod.GET)
+	public ApiResult<List<Schedule>> findByMemberId(@RequestParam("memberId") Long memberId) {
+		try {
+			return scheduleService.findByMemberId(memberId);
+		} catch ( RuntimeException e ) {
+			return new ApiResult<>(e);
+		}
+	}
+	
 	@RequestMapping(value = "/rest/v1/schedules_by_member", method = RequestMethod.POST)
 	public ApiResult<List<Schedule>> findByMember(@RequestBody Member member) {
 		try {
@@ -74,6 +84,7 @@ public class ScheduleController {
 			return new ApiResult<>(e);
 		}
 	}
+
 
 	@RequestMapping(value = "/rest/v1/schedules_by_date", method = RequestMethod.POST)
 	public ApiResult<List<Schedule>> findByDate(@RequestBody Date date) {
