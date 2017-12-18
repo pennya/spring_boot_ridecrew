@@ -1,6 +1,7 @@
 package com.ridecrew.springbootridecrew.domain;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -9,12 +10,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.ridecrew.springbootridecrew.serializer.JsonDateSerializer;
+import com.ridecrew.springbootridecrew.serializer.DateDeserializer;
+import com.ridecrew.springbootridecrew.serializer.DateSerializer;
+import com.ridecrew.springbootridecrew.serializer.TimeDeserializer;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,10 +45,10 @@ public class Schedule implements Serializable{
 	@JoinColumn(name = "member_id")
 	private Member member;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(nullable = false)
-	@JsonSerialize(using=JsonDateSerializer.class)
-	private Date date;
+	@NotNull
+	@JsonSerialize(using = DateSerializer.class)
+	@JsonDeserialize(using = DateDeserializer.class)
+	private LocalDate date;
 	
 	@Column(nullable = false)
 	private String title;
@@ -51,14 +59,19 @@ public class Schedule implements Serializable{
 	@Column(nullable = false)
 	private String endPoint;
 	
+	@NotNull
 	@Temporal(TemporalType.TIME)
-	@Column(nullable = false)
+	@DateTimeFormat(style = "hh:mm")
+	@JsonDeserialize(using = TimeDeserializer.class)
 	private Date startTime;
 	
+	@NotNull
 	@Temporal(TemporalType.TIME)
-	@Column(nullable = false)
+	@DateTimeFormat(style = "hh:mm")
+	@JsonDeserialize(using = TimeDeserializer.class)
 	private Date endTime;
 	
+	@Lob
 	@Column
 	private String descriptions;
 	
@@ -75,7 +88,6 @@ public class Schedule implements Serializable{
 	private int status;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column
 	private Date regDate;
 	
 }

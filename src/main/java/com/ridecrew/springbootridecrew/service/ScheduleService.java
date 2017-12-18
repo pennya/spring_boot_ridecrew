@@ -1,11 +1,11 @@
 package com.ridecrew.springbootridecrew.service;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
+import com.ridecrew.springbootridecrew.domain.Member;
 import com.ridecrew.springbootridecrew.domain.Schedule;
 import com.ridecrew.springbootridecrew.model.ApiResult;
-import com.ridecrew.springbootridecrew.domain.Member;
 
 public interface ScheduleService {
 	ApiResult<Schedule> findOne(Long id);
@@ -22,5 +22,5 @@ public interface ScheduleService {
 	
 	ApiResult<List<Schedule>> findByMember(Member member);
 	
-	ApiResult<List<Schedule>> findByDate(Date date);
+	ApiResult<List<Schedule>> findByDate(LocalDate date);
 }

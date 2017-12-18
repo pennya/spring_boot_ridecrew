@@ -1,9 +1,11 @@
 package com.ridecrew.springbootridecrew.controller;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -87,7 +89,7 @@ public class ScheduleController {
 
 
 	@RequestMapping(value = "/rest/v1/schedules_by_date", method = RequestMethod.POST)
-	public ApiResult<List<Schedule>> findByDate(@RequestBody Date date) {
+	public ApiResult<List<Schedule>> findByDate(@RequestParam(value = "date", defaultValue = "2016-12-25") @DateTimeFormat LocalDate date) {
 		try {
 			return scheduleService.findByDate(date);
 		} catch ( RuntimeException e ) {

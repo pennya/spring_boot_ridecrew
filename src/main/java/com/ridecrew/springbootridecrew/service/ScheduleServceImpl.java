@@ -1,7 +1,7 @@
 package com.ridecrew.springbootridecrew.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,7 +68,7 @@ public class ScheduleServceImpl implements ScheduleService{
 	}
 
 	@Override
-	public ApiResult<List<Schedule>> findByDate(Date date) {
+	public ApiResult<List<Schedule>> findByDate(LocalDate date) {
 		return new ApiResult<>(scheduleRepository.findByDate(date));
 	}
 	

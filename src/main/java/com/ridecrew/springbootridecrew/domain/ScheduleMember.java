@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class ScheduleMember implements Serializable{
 
 	private static final long serialVersionUID = 8646646827157939504L;
