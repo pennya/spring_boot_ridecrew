@@ -46,4 +46,5 @@ dependencies {
 	compileOnly('org.projectlombok:lombok:1.16.18')
 	compile ('commons-io:commons-io:2.4')
 	compile ('org.assertj:assertj-core:1.0.0')
+	compile ('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
 }

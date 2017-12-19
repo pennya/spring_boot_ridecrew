@@ -28,7 +28,6 @@ public class Member implements Serializable {
 	@Column(name = "member_id")
 	private Long id;
 	
-	@Column(nullable = false)
 	private String pwd;
 
 	@Column(nullable = false, unique = true)
