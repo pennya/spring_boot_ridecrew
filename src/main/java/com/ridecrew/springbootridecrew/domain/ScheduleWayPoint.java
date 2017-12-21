@@ -10,14 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name = "schedule_waypoint")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class ScheduleWayPoint implements Serializable{
 
 	private static final long serialVersionUID = 8694255296482157157L;

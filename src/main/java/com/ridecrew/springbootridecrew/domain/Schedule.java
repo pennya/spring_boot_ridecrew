@@ -22,6 +22,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.ridecrew.springbootridecrew.serializer.DateDeserializer;
@@ -31,14 +32,14 @@ import com.ridecrew.springbootridecrew.serializer.TimeSerializer;
 import com.ridecrew.springbootridecrew.serializer.TimestampDeserializer;
 import com.ridecrew.springbootridecrew.serializer.TimestampSerializer;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name = "schedule")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 @EntityListeners(AuditingEntityListener.class)
 public class Schedule implements Serializable{
 
@@ -54,6 +55,7 @@ public class Schedule implements Serializable{
 	private Member member;
 	
 	@OneToMany(mappedBy = "schedule", orphanRemoval = true)
+	@JsonIgnore
 	private List<ScheduleMember> scheduleMembers;
 	
 	@NotNull
@@ -70,12 +72,10 @@ public class Schedule implements Serializable{
 	@Column(nullable = false)
 	private String endPoint;
 	
-	@NotNull
 	@JsonSerialize(using = TimeSerializer.class)
 	@JsonDeserialize(using = TimeDeserializer.class)
 	private LocalTime startTime;
 	
-	@NotNull
 	@JsonSerialize(using = TimeSerializer.class)
 	@JsonDeserialize(using = TimeDeserializer.class)
 	private LocalTime endTime;
@@ -107,5 +107,5 @@ public class Schedule implements Serializable{
 	@JsonDeserialize(using = TimestampDeserializer.class)
     @Column(name = "last_modified_at", updatable = true)
     private LocalDateTime lastModifiedDateTime;
-	
+    
 }

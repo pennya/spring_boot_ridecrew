@@ -9,15 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name = "schedule_member")
-@Data
+@Getter
+@Setter
+@ToString
 public class ScheduleMember implements Serializable{
 
 	private static final long serialVersionUID = 8646646827157939504L;
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;

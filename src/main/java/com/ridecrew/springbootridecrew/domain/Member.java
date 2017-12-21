@@ -13,14 +13,16 @@ import javax.persistence.OneToMany;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name = "member")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Member implements Serializable {
 	
 	private static final long serialVersionUID = 389814181358557717L;
@@ -51,5 +53,7 @@ public class Member implements Serializable {
 	private int memberType;
 	
 	@OneToMany(mappedBy = "member", orphanRemoval = true)
+	@JsonIgnore
 	private List<Schedule> schedules;
+	
 }

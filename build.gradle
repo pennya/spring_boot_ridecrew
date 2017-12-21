@@ -16,7 +16,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 
 group = 'com.ridecrew'
-version = '0.0.11-SNAPSHOT'
+version = '0.0.12-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -46,5 +46,5 @@ dependencies {
 	compileOnly('org.projectlombok:lombok:1.16.18')
 	compile ('commons-io:commons-io:2.4')
 	compile ('org.assertj:assertj-core:1.0.0')
-	compile ('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+	
 }
