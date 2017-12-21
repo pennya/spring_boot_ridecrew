@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -44,12 +46,15 @@ public class Schedule implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "Schedule_id")
+	@Column(name = "schedule_id")
 	private long id;
 	
 	@ManyToOne()
 	@JoinColumn(name = "member_id")
 	private Member member;
+	
+	@OneToMany(mappedBy = "schedule", orphanRemoval = true)
+	private List<ScheduleMember> scheduleMembers;
 	
 	@NotNull
 	@JsonSerialize(using = DateSerializer.class)

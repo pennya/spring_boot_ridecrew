@@ -1,12 +1,14 @@
 package com.ridecrew.springbootridecrew.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -28,6 +30,7 @@ public class Member implements Serializable {
 	@Column(name = "member_id")
 	private Long id;
 	
+	@Column
 	private String pwd;
 
 	@Column(nullable = false, unique = true)
@@ -46,5 +49,7 @@ public class Member implements Serializable {
 	
 	@Column(name = "member_type", nullable = false)
 	private int memberType;
-
+	
+	@OneToMany(mappedBy = "member", orphanRemoval = true)
+	private List<Schedule> schedules;
 }

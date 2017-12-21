@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
-@Entity
+@Entity(name = "schedule_member")
 @Data
 public class ScheduleMember implements Serializable{
 
