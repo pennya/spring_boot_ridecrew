@@ -96,5 +96,14 @@ public class ScheduleController {
 			return new ApiResult<>(e);
 		}
 	}
+	
+	@RequestMapping(value = "/rest/v1/schedules_by_dates", method = RequestMethod.GET)
+	public ApiResult<List<Schedule>> findByDates(@RequestParam("date") String date) {
+		try {
+			return scheduleService.findByDates(date);
+		} catch ( RuntimeException e ) {
+			return new ApiResult<>(e);
+		}
+	}
 
 }

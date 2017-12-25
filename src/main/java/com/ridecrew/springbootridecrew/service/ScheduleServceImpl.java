@@ -1,7 +1,9 @@
 package com.ridecrew.springbootridecrew.service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +73,20 @@ public class ScheduleServceImpl implements ScheduleService{
 	public ApiResult<List<Schedule>> findByDate(LocalDate date) {
 		return new ApiResult<>(scheduleRepository.findByDate(date));
 	}
+
+	@Override
+	public ApiResult<List<Schedule>> findByDates(String date) {
+		List<Schedule> lists = new ArrayList<>();
+		Iterator<Schedule> itr = scheduleRepository.findAll().iterator();
+		while(itr.hasNext()) {
+			Schedule schedule = itr.next();
+			if(schedule.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")).startsWith(date)) {
+				lists.add(schedule);
+			}
+		}
+		return new ApiResult<>(lists);
+	}
+	
+	
 	
 }

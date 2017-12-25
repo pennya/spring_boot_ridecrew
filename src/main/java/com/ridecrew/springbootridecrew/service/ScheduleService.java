@@ -23,4 +23,6 @@ public interface ScheduleService {
 	ApiResult<List<Schedule>> findByMember(Member member);
 	
 	ApiResult<List<Schedule>> findByDate(LocalDate date);
+	
+	ApiResult<List<Schedule>> findByDates(String date);
 }

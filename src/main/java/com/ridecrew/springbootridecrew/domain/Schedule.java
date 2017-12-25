@@ -48,7 +48,7 @@ public class Schedule implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "schedule_id")
-	private long id;
+	private Long id;
 	
 	@ManyToOne()
 	@JoinColumn(name = "member_id")
