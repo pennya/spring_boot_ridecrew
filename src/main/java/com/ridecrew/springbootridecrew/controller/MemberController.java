@@ -3,6 +3,7 @@ package com.ridecrew.springbootridecrew.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,4 +74,14 @@ public class MemberController {
 			return new ApiResult<>(e);
 		}
 	}
+	
+	@RequestMapping(value = "rest/v1/member_login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public ApiResult<Member> findByEmailAndPwd(String email, String pwd) {
+		try {
+			return memberService.findByEmailAndPwd(email, pwd);
+		} catch (RuntimeException e) {
+			return new ApiResult<>(e);
+		}
+	}
+	
 }

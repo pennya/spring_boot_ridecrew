@@ -9,4 +9,5 @@ import com.ridecrew.springbootridecrew.domain.Member;
 public interface MemberRepository extends CrudRepository<Member, Long>{
 	Member findByEmail(String email);
 	Member findByDeviceId(String deviceId);
+	Member findByEmailAndPwd(String email, String pwd);
 }

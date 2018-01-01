@@ -79,4 +79,14 @@ public class MemberServiceImpl implements MemberService {
 	public ApiResult<Member> findByDeviceId(String deviceId) {
 		return new ApiResult<>(memberRepository.findByDeviceId(deviceId));
 	}
+
+	@Override
+	public ApiResult<Member> findByEmailAndPwd(String email, String pwd) {
+		Member member = memberRepository.findByEmailAndPwd(email, pwd);
+		if(member == null)
+			return new ApiResult<>(ApiErrorType.INVALIDATE_INPUT, ApiErrorCode.INCORRECT_LOGIN_ID_AND_PASSWORD, "INCORRECT LOGIN ID AND PASSWORD");
+		return new ApiResult<>(member);
+	}
+	
+	
 }
