@@ -5,10 +5,11 @@ This is REST API Server for ridecrew android app.
 
 REST API Features
 ============
-1. SignUp 
-2. Login
-3. Member
-4. Schedule
+1. SignUp CRUD
+2. Login CRUD
+3. Member CRUD
+4. Schedule CRUD
+5. findBy... 
 
 Libraries Used
 ============
