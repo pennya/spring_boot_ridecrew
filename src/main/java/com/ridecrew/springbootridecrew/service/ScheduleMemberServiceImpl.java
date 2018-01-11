@@ -35,6 +35,11 @@ public class ScheduleMemberServiceImpl implements ScheduleMemberService {
 		ScheduleMember scheduleMember = scheduleMemberRepository.findByScheduleIdAndMemberId(scheduleId, memberId);
 		scheduleMemberRepository.delete(scheduleMember.getId());
 		return new ApiResult<>();
+	}
+
+	@Override
+	public ApiResult<List<ScheduleMember>> findByMemberId(Long memberId) {
+		return new ApiResult<>(scheduleMemberRepository.findByMemberId(memberId));
 	} 
 
 }

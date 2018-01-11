@@ -12,4 +12,6 @@ public interface ScheduleMemberService {
 	ApiResult<ScheduleMember> add(ScheduleMember sm);
 	
 	ApiResult<Void> delete(Long schedulePk, Long memberPk);
+	
+	ApiResult<List<ScheduleMember>> findByMemberId(Long memberId);
 }

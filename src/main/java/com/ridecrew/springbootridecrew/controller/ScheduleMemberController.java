@@ -29,6 +29,15 @@ public class ScheduleMemberController {
 		}
 	}
 	
+	@RequestMapping(value = "rest/v1/schedule_members_by_member_id", method = RequestMethod.GET)
+	public ApiResult<List<ScheduleMember>> getAllByMemberId(@RequestParam("memberId") Long memberId) {
+		try {
+			return scheduleMemberService.findByMemberId(memberId);
+		} catch ( RuntimeException e ) {
+			return new ApiResult<>(e);
+		}
+	}
+	
 	@RequestMapping(value = "/rest/v1/schedule_members", method = RequestMethod.POST)
 	public ApiResult<ScheduleMember> add(@RequestBody ScheduleMember sm) {
 		try {
