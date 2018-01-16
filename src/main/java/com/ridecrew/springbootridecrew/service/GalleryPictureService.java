@@ -7,4 +7,5 @@ import com.ridecrew.springbootridecrew.model.ApiResult;
 
 public interface GalleryPictureService {
 	ApiResult<ArrayList<GalleryPicture>> findByGalleryId(Long galleryId);
+	ApiResult<GalleryPicture> addPicture(GalleryPicture picture);
 }
