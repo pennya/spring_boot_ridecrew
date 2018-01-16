@@ -17,6 +17,10 @@ import com.ridecrew.springbootridecrew.service.MemberService;
 
 @RestController
 public class MemberController {
+	
+	/**
+	 * RestController - Service - Repository - Domain
+	 */
 
 	@Autowired
 	private MemberService memberService;

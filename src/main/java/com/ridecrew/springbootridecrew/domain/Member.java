@@ -56,4 +56,8 @@ public class Member implements Serializable {
 	@JsonIgnore
 	private List<Schedule> schedules;
 	
+	@OneToMany(mappedBy="member", orphanRemoval=true)
+	@JsonIgnore
+	private List<Gallery> galleries;
+	
 }

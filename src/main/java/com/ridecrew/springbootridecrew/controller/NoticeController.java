@@ -17,6 +17,11 @@ import com.ridecrew.springbootridecrew.repository.NoticeRepository;
 
 @RestController // @Controller + @ResponseBody
 public class NoticeController {
+	
+	/**
+	 * RestController - Repository - Domain
+	 * without service( business logic)
+	 */
 
 	@Autowired
 	private NoticeRepository repository; 

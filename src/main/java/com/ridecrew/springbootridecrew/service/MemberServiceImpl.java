@@ -13,7 +13,7 @@ import com.ridecrew.springbootridecrew.model.ApiErrorType;
 import com.ridecrew.springbootridecrew.model.ApiResult;
 import com.ridecrew.springbootridecrew.repository.MemberRepository;
 
-@Service
+@Service // 비지니스 로직이 들어가는 Service로 등록이되며 Controller에 있는 service와 변수명이 같아야함. xxxService 그러면 자동 매핑
 @Transactional
 public class MemberServiceImpl implements MemberService {
 	

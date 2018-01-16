@@ -16,6 +16,10 @@ import com.ridecrew.springbootridecrew.service.ScheduleMemberService;
 @RestController
 public class ScheduleMemberController {
 	
+	/**
+	 * RestController - Service - Repository - Domain
+	 */
+	
 	@Autowired
 	private ScheduleMemberService scheduleMemberService;
 	
