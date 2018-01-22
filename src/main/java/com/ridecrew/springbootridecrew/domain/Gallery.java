@@ -51,6 +51,9 @@ public class Gallery implements Serializable{
 	@Column
 	private String content;
 	
+	@Column(nullable=false)
+	private String imageUrl;
+	
 	@CreatedDate
 	@JsonSerialize(using=TimestampSerializer.class)
 	@JsonDeserialize(using=TimestampDeserializer.class)
