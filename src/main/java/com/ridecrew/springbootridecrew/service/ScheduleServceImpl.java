@@ -58,6 +58,14 @@ public class ScheduleServceImpl implements ScheduleService{
 		scheduleRepository.delete(id);
 		return new ApiResult<>();
 	}
+	
+	@Override
+	public ApiResult<Void> deleteAll() {
+		scheduleRepository.deleteAll();
+		return new ApiResult<>();
+	}
+	
+	
 
 	@Override
 	public ApiResult<List<Schedule>> findByMemberId(Long memberId) {
@@ -86,7 +94,6 @@ public class ScheduleServceImpl implements ScheduleService{
 		}
 		return new ApiResult<>(lists);
 	}
-	
 	
 	
 }
