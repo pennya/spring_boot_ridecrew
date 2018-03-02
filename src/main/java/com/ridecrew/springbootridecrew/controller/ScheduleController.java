@@ -72,6 +72,15 @@ public class ScheduleController {
 		}
 	}
 	
+	@RequestMapping(value = "/rest/v1/schedules_delete_all", method = RequestMethod.DELETE)
+	public ApiResult<Void> deleteAll() {
+		try {
+			return scheduleService.deleteAll();
+		} catch ( RuntimeException e) {
+			return new ApiResult<>(e);
+		}
+	}
+	
 	@RequestMapping(value = "/rest/v1/schedules_by_member", method = RequestMethod.GET)
 	public ApiResult<List<Schedule>> findByMemberId(@RequestParam("memberId") Long memberId) {
 		try {
