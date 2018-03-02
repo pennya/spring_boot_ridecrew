@@ -72,7 +72,11 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ApiResult<Member> findByEmail(String email) {
-		return new ApiResult<>(memberRepository.findByEmail(email));
+		Member member = memberRepository.findByEmail(email);
+		if(member == null)
+			return new ApiResult<>(ApiErrorType.INVALIDATE_INPUT, ApiErrorCode.INCORRECT_LOGIN_ID, "INCORRECT LOGIN ID");
+		
+		return new ApiResult<>(member);
 	}
 
 	@Override
@@ -87,6 +91,14 @@ public class MemberServiceImpl implements MemberService {
 			return new ApiResult<>(ApiErrorType.INVALIDATE_INPUT, ApiErrorCode.INCORRECT_LOGIN_ID_AND_PASSWORD, "INCORRECT LOGIN ID AND PASSWORD");
 		return new ApiResult<>(member);
 	}
-	
+
+	@Override
+	public ApiResult<Member> findByMember(Member member) {
+		Member preMember = memberRepository.findByEmail(member.getEmail());
+		if(preMember == null) {
+			return new ApiResult<>(memberRepository.save(member)); 
+		}
+		return new ApiResult<>(preMember);
+	}
 	
 }

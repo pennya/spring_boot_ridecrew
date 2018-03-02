@@ -88,4 +88,12 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping(value="rest/v1/sns_member_login", method=RequestMethod.POST)
+	public ApiResult<Member> snsLogin(@RequestBody Member member) {
+		try {
+			return memberService.findByMember(member);
+		} catch (RuntimeException e) {
+			return new ApiResult<>(e);
+		}
+	}
 }

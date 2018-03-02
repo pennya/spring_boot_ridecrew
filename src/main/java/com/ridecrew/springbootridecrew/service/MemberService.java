@@ -21,4 +21,6 @@ public interface MemberService {
     ApiResult<Member> findByDeviceId(String deviceId);
     
     ApiResult<Member> findByEmailAndPwd(String email, String pwd);
+    
+    ApiResult<Member> findByMember(Member member);
 }

@@ -49,8 +49,15 @@ public class Member implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String deviceId;
 	
+	/**
+	 * 1		normal
+	 * 2		facebook
+	 * 3		google
+	 * 4		naver
+	 * 5		kakao
+	 */
 	@Column(name = "member_type", nullable = false)
-	private int memberType;
+	private int memberType;		
 	
 	@OneToMany(mappedBy = "member", orphanRemoval = true)
 	@JsonIgnore
