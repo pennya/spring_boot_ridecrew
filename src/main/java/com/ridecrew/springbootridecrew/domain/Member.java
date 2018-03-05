@@ -59,6 +59,9 @@ public class Member implements Serializable {
 	@Column(name = "member_type", nullable = false)
 	private int memberType;		
 	
+	@Column
+	private String profileUrl;
+	
 	@OneToMany(mappedBy = "member", orphanRemoval = true)
 	@JsonIgnore
 	private List<Schedule> schedules;
