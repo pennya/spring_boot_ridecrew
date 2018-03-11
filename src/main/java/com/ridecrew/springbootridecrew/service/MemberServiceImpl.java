@@ -60,6 +60,7 @@ public class MemberServiceImpl implements MemberService {
 		origin.setNickName(member.getNickName());
 		origin.setPwd(member.getPwd());
 		origin.setSex(member.getSex());
+		origin.setProfileUrl(member.getProfileUrl());
 		
 		return new ApiResult<>(memberRepository.save(origin));
 	}
