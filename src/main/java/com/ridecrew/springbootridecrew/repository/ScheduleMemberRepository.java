@@ -11,4 +11,5 @@ import com.ridecrew.springbootridecrew.domain.ScheduleMember;
 public interface ScheduleMemberRepository extends CrudRepository<ScheduleMember, Long>{
 	ScheduleMember findByScheduleIdAndMemberId(Long scheduleId, Long memberId);
 	List<ScheduleMember> findByMemberId(Long memberId);
+	List<ScheduleMember> findByScheduleId(Long scheduleId);
 }
