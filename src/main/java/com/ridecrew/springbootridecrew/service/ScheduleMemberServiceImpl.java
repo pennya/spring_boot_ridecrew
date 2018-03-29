@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ridecrew.springbootridecrew.domain.ScheduleMember;
+import com.ridecrew.springbootridecrew.model.ApiErrorCode;
+import com.ridecrew.springbootridecrew.model.ApiErrorType;
 import com.ridecrew.springbootridecrew.model.ApiResult;
 import com.ridecrew.springbootridecrew.repository.ScheduleMemberRepository;
 
@@ -27,6 +29,15 @@ public class ScheduleMemberServiceImpl implements ScheduleMemberService {
 
 	@Override
 	public ApiResult<ScheduleMember> add(ScheduleMember sm) {
+		ScheduleMember prevMember = 
+				scheduleMemberRepository.findByScheduleIdAndMemberId(
+						sm.getSchedule().getId(),
+						sm.getMember().getId());
+		
+		if(prevMember != null) {
+			return new ApiResult<>(ApiErrorType.MESSAGE, ApiErrorCode.DUPLICATE_ID, "DUPLICATE SCHEDULE MEMBER ID");
+		}
+						
 		return new ApiResult<>(scheduleMemberRepository.save(sm));
 	}
 

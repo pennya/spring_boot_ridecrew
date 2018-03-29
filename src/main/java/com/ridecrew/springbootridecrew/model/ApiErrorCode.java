@@ -10,5 +10,6 @@ public enum ApiErrorCode {
     NO_PERMISSION,
     NOT_FOUND,
     DUPLICATE_DEVICE_ID, 
-    INCORRECT_LOGIN_ID
+    INCORRECT_LOGIN_ID,
+    DUPLICATE_ID
 }
