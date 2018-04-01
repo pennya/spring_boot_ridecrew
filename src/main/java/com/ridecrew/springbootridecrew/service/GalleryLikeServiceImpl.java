@@ -3,6 +3,8 @@ package com.ridecrew.springbootridecrew.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ridecrew.springbootridecrew.domain.GalleryLike;
 import com.ridecrew.springbootridecrew.model.ApiErrorCode;
@@ -10,6 +12,8 @@ import com.ridecrew.springbootridecrew.model.ApiErrorType;
 import com.ridecrew.springbootridecrew.model.ApiResult;
 import com.ridecrew.springbootridecrew.repository.GalleryLikeRepository;
 
+@Service
+@Transactional
 public class GalleryLikeServiceImpl implements GalleryLikeService {
 	
 	@Autowired
