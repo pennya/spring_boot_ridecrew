@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,6 +47,9 @@ public class MemberServiceImpl implements MemberService {
 			return new ApiResult<>(ApiErrorType.MESSAGE, ApiErrorCode.DUPLICATE_DEVICE_ID, "DUPLICATE DEVICE ID");
 		}
 		
+		String rawPassword = member.getPwd();
+		String encodedPassword = new BCryptPasswordEncoder().encode(rawPassword);  // default round is 10
+		member.setPwd(encodedPassword);
 		return new ApiResult<>(memberRepository.save(member));
 	}
 
@@ -58,7 +63,10 @@ public class MemberServiceImpl implements MemberService {
 		origin.setEmail(member.getEmail());
 		origin.setMemberType(member.getMemberType());
 		origin.setNickName(member.getNickName());
-		origin.setPwd(member.getPwd());
+		
+		String rawPassword = member.getPwd();
+		String encodedPassword = new BCryptPasswordEncoder().encode(rawPassword);  // default round is 10
+		origin.setPwd(encodedPassword);
 		origin.setSex(member.getSex());
 		origin.setProfileUrl(member.getProfileUrl());
 		
@@ -87,10 +95,13 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public ApiResult<Member> findByEmailAndPwd(String email, String pwd) {
-		Member member = memberRepository.findByEmailAndPwd(email, pwd);
-		if(member == null)
+		Member member = memberRepository.findByEmail(email);
+		if(new BCryptPasswordEncoder().matches(pwd, member.getPwd())) {
+			return new ApiResult<>(member);
+		} else {
 			return new ApiResult<>(ApiErrorType.INVALIDATE_INPUT, ApiErrorCode.INCORRECT_LOGIN_ID_AND_PASSWORD, "INCORRECT LOGIN ID AND PASSWORD");
-		return new ApiResult<>(member);
+		}
+		
 	}
 
 	@Override
