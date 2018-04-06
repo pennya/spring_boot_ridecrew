@@ -21,7 +21,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.deser.std.DateDeserializers.TimestampDeserializer;
+import com.ridecrew.springbootridecrew.serializer.TimestampDeserializer;
 import com.ridecrew.springbootridecrew.serializer.TimestampSerializer;
 
 import lombok.Getter;
@@ -45,6 +45,14 @@ public class Gallery implements Serializable{
 	@JoinColumn(name="member_id")
 	private Member member;
 	
+	@OneToMany(mappedBy="gallery", orphanRemoval=true)
+	@JsonIgnore
+	private Set<GalleryPicture> galleryPictures;
+	
+	@OneToMany(mappedBy="gallery", orphanRemoval=true)
+	@JsonIgnore
+	private Set<GalleryLike> galleryLikes;
+	
 	@Column
 	private String title;
 	
@@ -58,18 +66,15 @@ public class Gallery implements Serializable{
 	private int likeCount;
 	
 	@CreatedDate
-	@JsonSerialize(using=TimestampSerializer.class)
-	@JsonDeserialize(using=TimestampDeserializer.class)
-	@Column(name="create_at", updatable=false)
-	private LocalDateTime createdDateTime;
+	@JsonSerialize(using = TimestampSerializer.class)
+	@JsonDeserialize(using = TimestampDeserializer.class)
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdDateTime;
+
+    @LastModifiedDate
+    @JsonSerialize(using = TimestampSerializer.class)
+	@JsonDeserialize(using = TimestampDeserializer.class)
+    @Column(name = "last_modified_at", updatable = true)
+    private LocalDateTime lastModifiedDateTime;
 	
-	@LastModifiedDate
-	@JsonSerialize(using=TimestampSerializer.class)
-	@JsonDeserialize(using=TimestampDeserializer.class)
-	@Column(name="last_modified_at", updatable=true)
-	private LocalDateTime lastModifiedDateTime;
-	
-	@OneToMany(mappedBy="gallery", orphanRemoval=true)
-	@JsonIgnore
-	private Set<GalleryPicture> galleryPictures;
 }
