@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -36,7 +35,6 @@ public class Member implements Serializable {
 	private String pwd;
 
 	@Column(nullable = false, unique = true)
-	@Email(message = "Please provide a valid email")
 	@NotEmpty(message = "Please provide an email")
 	private String email;
 
