@@ -58,16 +58,19 @@ public class MemberServiceImpl implements MemberService {
 		if(origin == null) {
 			return new ApiResult<>(ApiErrorType.INVALIDATE_INPUT, ApiErrorCode.NOT_FOUND, "MEMBER NOT FOUND. INVALID MEMBER PK");
 		}
-		origin.setDeviceId(member.getDeviceId());
-		origin.setEmail(member.getEmail());
-		origin.setMemberType(member.getMemberType());
-		origin.setNickName(member.getNickName());
-		
-		String rawPassword = member.getPwd();
-		String encodedPassword = new BCryptPasswordEncoder().encode(rawPassword);  // default round is 10
-		origin.setPwd(encodedPassword);
-		origin.setSex(member.getSex());
-		origin.setProfileUrl(member.getProfileUrl());
+		if(!origin.getDeviceId().equals(member.getDeviceId()))
+			origin.setDeviceId(member.getDeviceId());
+		if(!origin.getEmail().equals(member.getEmail()))
+			origin.setEmail(member.getEmail());
+		if(origin.getMemberType() != member.getMemberType())
+			origin.setMemberType(member.getMemberType());
+		if(!origin.getNickName().equals(member.getNickName()))
+			origin.setNickName(member.getNickName());
+		if(origin.getSex() != member.getSex())
+			origin.setSex(member.getSex());
+		if(origin.getProfileUrl() == null 
+				||!origin.getProfileUrl().equals(member.getProfileUrl()))
+			origin.setProfileUrl(member.getProfileUrl());
 		
 		return new ApiResult<>(memberRepository.save(origin));
 	}
